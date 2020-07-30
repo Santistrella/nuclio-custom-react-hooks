@@ -1,27 +1,23 @@
-import React, { useState } from 'react';
-import { useTasks } from "./hooks";
+import React from 'react';
 import { Input, TaskItem, TaskList, Controls } from "./components";
 
 const App = () => {
-    const { tasks, addTask, removeTask, loadMore } = useTasks({ offset: 5 });
-    const [title, setTitle] = useState('');
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        addTask(title);
-        setTitle('');
-    }
+    const tasks = [
+        { id: 1, title: 'do dishes', completed: false },
+        { id: 2, title: 'buy groceries', completed: true },
+        { id: 3, title: 'take a shower please', completed: false }
+    ]
 
     return (
         <section>
             <h1>What do you want to do today?</h1>
-            <Input onSubmit={handleSubmit} onChange={setTitle} value={title} />
+            <Input />
             <TaskList>
                 {tasks.map(({ id, title, completed }) => (
-                    <TaskItem key={id} title={title} completed={completed} onRemove={() => removeTask(id)}/>
+                    <TaskItem key={id} title={title} completed={completed} />
                 ))}
             </TaskList>
-            <Controls onLoad={loadMore} tasks={tasks} />
+            <Controls tasks={tasks} />
         </section>
     );
 };

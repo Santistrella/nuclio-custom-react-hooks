@@ -14,7 +14,7 @@ export const TaskItem = ({ title, completed, onRemove }) => (
 
 export const Input = ({ onSubmit, onChange, value }) => (
     <form onSubmit={onSubmit}>
-        <input placeholder="buy milk" onChange={e => onChange(e.target.value)} value={value}/>
+        <input placeholder="buy milk" onChange={e => onChange && onChange(e.target.value)} value={value}/>
     </form>
 )
 
